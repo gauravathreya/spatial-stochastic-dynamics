@@ -10,8 +10,8 @@ get_MSD <- function(mean, #Mean of the dist
                     var, #Variance of the normal dist
                     runs, #Number of realizations to average over
                     T, #Timesteps for which to run the simulation
-                    animate, #boolean. Should you provide an animation of the path?
-                    plot=FALSE){ #boolen. Should you plot the path taken once simulation is complete?
+                    animate, #boolean. Do you want an animation of the path?
+                    plot=FALSE){ #boolen. Do you want to plot the path taken once simulation is complete?
   
   MSDx <- rep(0,T)
   MSDy <- rep(0,T)
@@ -63,7 +63,7 @@ get_MSD <- function(mean, #Mean of the dist
   }
 
   
-  return (MSD)
+  return (MSDx)
 }
 
 ###############################################################
@@ -99,10 +99,10 @@ library(reshape2)
 
 
 #Reshape into the form ggplot likes
-df2 <- melt(df,id.vars='Time',variable.name = 'variance')
+df2 <- melt(df,id.vars='Time',variable.name = 'Standard_Deviation')
 
 #Make the plot
-MSD_plot <- ggplot(df2,aes(x=Time,y=value)) + geom_point(aes(color=variance))
+MSD_plot <- ggplot(df2,aes(x=Time,y=value)) + geom_point(aes(color= Standard_Deviation))
 MSD_plot <- MSD_plot + xlab('Time') + ylab('MSD') + theme_light()
 
 #aesthetics
@@ -125,7 +125,7 @@ slope_df <- data.frame(cbind(varlist,slopelist))
 
 #plot it
 slope_plot <- ggplot(slope_df,aes(x=varlist,y=slopelist)) + geom_point()
-slope_plot <- slope_plot + xlab('Variance') + ylab('Slope of the \nMSD vs Time line') + theme_light()
+slope_plot <- slope_plot + xlab('Standard Deviation') + ylab('Slope of the \nMSD in \nx direction vs Time line') + theme_light()
 
 #aesthetics
 slope_plot <- slope_plot + theme(panel.border = element_blank(), axis.line = element_line(colour = "black")) + theme(axis.text = element_text(face = 'bold', color = 'black',size = 15)) + theme(axis.title = element_text(face = 'bold',color = 'black',size = '15'))
