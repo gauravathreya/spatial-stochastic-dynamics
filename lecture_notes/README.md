@@ -1,6 +1,6 @@
 # Lecture notes
 Written by Shikhara Bhat.
 
-##Topics covereed 
+## Topics covereed 
 
  - Lecture 01: Introduction to random walks
